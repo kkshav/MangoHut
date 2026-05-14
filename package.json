@@ -1,0 +1,10 @@
+{
+  "name": "mangohut",
+  "private": true,
+  "version": "1.0.0",
+  "description": "MangoHut — Dota 2 item, skill, and talent stats via OpenDota",
+  "scripts": {
+    "start": "npx --yes serve . -l 3000",
+    "preview": "npx --yes serve . -l 3000"
+  }
+}

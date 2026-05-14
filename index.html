@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MangoHut · Dota 2 build stats</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/dota2-minimap-hero-sprites@2.4.0/assets/stylesheets/dota2minimapheroes.css"
+    crossorigin="anonymous"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-brand">
+        <img src="favicon.png" alt="" class="header-logo" width="44" height="44" />
+        <h1>MangoHut</h1>
+      </div>
+      <p class="tagline">Your preferred items & skill builds from recent matches</p>
+    </header>
+
+    <main class="main">
+      <section class="search-section card">
+        <div class="form-group">
+          <label for="heroSearch">Hero (required)</label>
+          <p class="hint">Select one hero to analyze. Builds use your most recent games on that hero; set how many below.</p>
+          <div class="hero-select-wrap">
+            <input
+              type="text"
+              id="heroSearch"
+              placeholder="Select a hero…"
+              autocomplete="off"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-controls="heroDropdown"
+            />
+            <input type="hidden" id="heroId" value="" />
+            <ul id="heroDropdown" class="hero-dropdown" role="listbox" hidden></ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="accountId">Steam Account ID (32-bit)</label>
+          <p class="hint">Find yours on <a href="https://www.opendota.com" target="_blank" rel="noopener">OpenDota</a> or Steam profile URL. Use numeric ID only.</p>
+          <div class="search-row">
+            <input
+              type="text"
+              id="accountId"
+              placeholder="e.g. 124879406"
+              autocomplete="off"
+            />
+            <div class="match-limit-group">
+              <label for="matchLimit"># of matches</label>
+              <input
+                type="number"
+                id="matchLimit"
+                min="1"
+                max="500"
+                value="100"
+                step="1"
+                title="Recent games on this hero to include (1–500)"
+                inputmode="numeric"
+              />
+            </div>
+            <button type="button" id="analyzeBtn" class="btn btn-primary">Analyze</button>
+          </div>
+          <p class="hint hint-tight">Match details load in parallel for speed. Very high counts may hit API limits; failed replays are skipped.</p>
+        </div>
+        <div id="searchError" class="error" aria-live="polite"></div>
+        <div id="searchProgress" class="progress" aria-live="polite" hidden></div>
+      </section>
+
+      <div id="results" class="results" hidden>
+        <section class="summary card">
+          <h2>Summary</h2>
+          <p id="summaryText"></p>
+        </section>
+
+        <section class="card">
+          <h2>Most built items</h2>
+          <p class="section-desc">Items you had in your inventory at the end of games (main slots + backpack).</p>
+          <div id="itemsList" class="items-grid"></div>
+        </section>
+
+        <section class="card">
+          <h2>Skill build order</h2>
+          <p class="section-desc">Most common order you level abilities (levels 1–25).</p>
+          <div id="skillBuildList" class="skill-build"></div>
+        </section>
+
+        <section class="card">
+          <h2>Talent choices</h2>
+          <p class="section-desc">Most picked talent at each level (10, 15, 20, 25).</p>
+          <div id="talentsList" class="talents-list"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Data from <a href="https://www.opendota.com" target="_blank" rel="noopener">OpenDota</a> API. Not affiliated with Valve.</p>
+    </footer>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
