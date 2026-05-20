@@ -1,6 +1,6 @@
 # MangoHut
 
-https://6a05b7e8e6a03750a52f4950--dashing-gecko-9ce945.netlify.app/
+https://dashing-gecko-9ce945.netlify.app/
 
 Static web app that uses the [OpenDota API](https://docs.opendota.com/) to summarize your recent games on **one hero**: most-built **items**, **skill build order**, and **talent** picks.
 
